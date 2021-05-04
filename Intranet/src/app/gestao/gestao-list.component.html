@@ -1,0 +1,20 @@
+<h1>Gestão de Contratos</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Contrato</th>
+            <th>Unidade Faturamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contratos of contratos">
+            <td>{{ contratos.id }}</td>
+            <td>{{ contratos.cliente }}</td>
+            <td>{{ contratos.contrato }}</td>
+            <td>{{ contratos.unidadefaturamento }}</td>
+        </tr>
+    </tbody>
+</table>
