@@ -1,0 +1,33 @@
+<h2>Contrato Detalhes</h2>
+<hr />
+<form #contratoForm='ngForm'>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Cliente:</label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="contrato.cliente" required [ngClass]="{'is-invalid':contratoCliente.invalid}" name="cliente" #contratoCliente="ngModel" />
+            <div class="invalid-feedback">
+                Nome do Cliente Inválido.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Contrato:</label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="contrato.contrato" name="contrato" #contratoContrato="ngModel" required [ngClass]="{'is-invalid':contratoContrato.invalid}" />
+            <div class="invalid-feedback">
+                Contrato do Cliente Inválido.
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Unidade Faturamento:</label>
+        <div class="col-sm-10">
+            <input class="form-control" [(ngModel)]="contrato.unidadefaturamento" name="unidade" #contratoUnidade="ngModel" required [ngClass]="{'is-invalid':contratoUnidade.invalid}" />
+            <div class="invalid-feedback">
+                Unidade do Cliente Inválido.
+            </div>
+        </div>
+    </div>
+    <button [disabled]="contratoForm.invalid" (click)="save()" class="btn btn-success mr-2">Salvar</button>
+    <button [routerLink]="['/gestao']" class="btn btn-secondary mr-2">Voltar</button>
+</form>

@@ -1,30 +1,33 @@
 import { Component, OnInit } from '@angular/core'
 import { Gestao } from './gestao'
+import { GestaoService } from './gestao.service';
 
 @Component({
-    selector: 'app-gestao-list',
     templateUrl: './gestao-list.component.html'
 })
 
 export class GestaoListComponent implements OnInit {
 
-    contratos: Gestao[] = [];
+    contratosFiltrados: Gestao[] = [];
+
+    _contratos: Gestao[] = [];
+
+    _filterBy: string;
+
+    constructor( private gestaoService: GestaoService){}
 
     ngOnInit(): void {
-        this.contratos = [
-            {
-                id: 1,
-                cliente: 'Syngenta Formosa',
-                contrato: 'CT.081.2018.01',
-                unidadefaturamento: 'Syngenta Formosa'
-            },
-            {
-                id: 2,
-                cliente: 'Syngenta Ituiutaba',
-                contrato: 'CT.154.2018.01',
-                unidadefaturamento: 'Syngenta Ituiutaba'
-            }
-        ]
+        this._contratos = this.gestaoService.retornaTudo();
+        this.contratosFiltrados = this._contratos;
     }
 
+    set filtro(value: string){
+        this._filterBy = value;
+
+        this.contratosFiltrados = this._contratos.filter((contrato: Gestao)=> contrato.cliente.toLowerCase().indexOf(this._filterBy.toLowerCase())> -1);    
+    }
+
+    get filtro(){
+        return this._filterBy;
+    }
 }

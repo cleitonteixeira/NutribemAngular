@@ -1,20 +1,29 @@
 <h1>Gestão de Contratos</h1>
-
-<table class="table table-bordered table-striped">
-    <thead>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Filtrar por:</label>
+    <div class="col-sm-10">
+        <input class="form-control" [(ngModel)]="filtro"  />
+    </div>
+</div>
+<table class="table table-borderless table-striped">
+    <thead class="thead-light">
         <tr>
             <th>ID</th>
             <th>Cliente</th>
             <th>Contrato</th>
             <th>Unidade Faturamento</th>
+            <th>Detalhes</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let contratos of contratos">
+        <tr *ngFor="let contratos of contratosFiltrados">
             <td>{{ contratos.id }}</td>
             <td>{{ contratos.cliente }}</td>
             <td>{{ contratos.contrato }}</td>
             <td>{{ contratos.unidadefaturamento }}</td>
+            <td>
+                <a [routerLink]="['/gestao/detalhe', contratos.id]" class="btn btn-success">Edit</a>
+            </td>
         </tr>
     </tbody>
 </table>
