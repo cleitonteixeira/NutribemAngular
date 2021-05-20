@@ -1,0 +1,27 @@
+<app-navbar-home></app-navbar-home>
+<div class="jumbotron jumbotron-fluid bg-transparent">
+    <div class="container">
+        <p class="lead">Seja Bem-Vindo a <strong>Intranet Nutribem</strong>, aqui você encontra os seguintes sistemas.</p>
+        <div class="list-group">
+            <a [routerLink]="['/gestorcontratos']" routerLinkActive="router-link-active"  class="list-group-item list-group-item-action list-group-item-secondary">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Gestor de Contratos</h5>
+            </div>
+            <p class="mb-1">Sistema direcionado para lançamento diário, medição e controle de contratos.</p>
+            </a>
+            <a [routerLink]="['/inventario']" class="list-group-item list-group-item-action list-group-item-dark">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Inventário</h5>
+            </div>
+            <p class="mb-1">Sistema direcionado para controle de inventário e solicitação de equipamentos/utensílios.</p>
+            </a>
+            <a [routerLink]="['/qualidade']"  class="list-group-item list-group-item-action list-group-item-secondary">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Qualidade</h5>
+            </div>
+            <p class="mb-1">Sistema direcionado para download de arquivos padrão da Qualidade Nutribem.</p>
+            </a>
+            
+        </div>
+    </div>
+</div>
