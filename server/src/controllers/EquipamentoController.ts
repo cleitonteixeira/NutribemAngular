@@ -30,4 +30,11 @@ export default class EquipamentoController{
         
         return retorno
     }
+
+    async retornaEquipamento(){
+        var sql = 'SELECT e.idEquipamento AS id, e.Nome AS nome, e.Sequencial AS sequencial, u.Nome AS unidade, u.Codigo AS unidadeIdUnidade FROM equipamento e INNER JOIN unidade u ON u.idUnidade = e.Unidade_idUnidade';
+        const retorno = await getConnection().query(sql);
+        console.log(retorno);
+        return retorno;
+    }
 } 

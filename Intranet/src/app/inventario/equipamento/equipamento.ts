@@ -1,12 +1,12 @@
 export class Equipamento {
-  idEquipamento: number;
-  unidadeIdUnidade: number;
-  unidade:string;
-  categoriaIdCategoria: number;
-  categoria:string;
-  nome: string;
-  descricao: string;
-  sequencial: number;
-  ativo: number;
-  situacao: string;
+  idEquipamento: Number;
+  unidadeIdUnidade: Number;
+  unidade: String;
+  categoriaIdCategoria: Number;
+  categoria:String;
+  nome: String;
+  descricao: String;
+  sequencial: Number;
+  ativo: Number;
+  situacao: String;
 }

@@ -1,18 +1,18 @@
 <h4 class="card-title mb-4">Cadastro Equipamento</h4>
 <form #cadEquipamentoForm='ngForm' class="col-8 mr-auto" >
     <div class="form-group row">
-        <label for="Nome" class="col-sm-3 col-form-label">Equipamento:</label>
+        <label for="equipamento" class="col-sm-3 col-form-label">Equipamento:</label>
         <div class="col-sm-9 ml-0">
-            <input required name="nome" id="nome" class="form-control" />
-            <div class="invalid-feedback">Nome</div>
+            <input class="form-control" required name="equipamento" id="equipamento" [(ngModel)]="equipamento"/>
+            <div class="help-block with-errors"></div>
         </div>
     </div>
     <div class="form-group row">
         <label for="Unidade" class="col-sm-3 col-form-label">Unidade:</label>
         <div class="col-sm-9 ml-0">
-            <select class="form-control" name="Unidade" id="Unidade" required title="Selecione uma unidade...">
+            <select class="form-control" name="unidadeIdUnidade" [(ngModel)]="unidadeIdUnidade" id="unidadeIdUnidade" required title="Selecione uma unidade...">
                 <option selected>Selecione uma Unidade</option>
-                <option *ngFor="let unidade of unidades" data-subtext={{unidade.Responsavel}} value= {{unidade.idUnidade}}>
+                <option *ngFor="let unidade of unidades" data-subtext={{unidade.Responsavel}} value={{unidade.idUnidade}}>
                     {{unidade.Unidade}}
                 </option>
             </select>
@@ -22,7 +22,7 @@
     <div class="form-group row">
         <label for="Categoria" class="col-sm-3 col-form-label">Categoria:</label>
         <div class="col-sm-9 ml-0">
-            <select class="form-control" name="Categoria" id="Categoria" required title="Selecione uma unidade..." (change)="retornaSequencial($event.target.value)">
+            <select class="form-control" name="categoriaIdCategoria" id="categoriaIdCategoria" [(ngModel)]="categoriaIdCategoria" required title="Selecione uma unidade..." (change)="retornaSequencial($event.target.value)">
                 <option selected>Selecione uma Categoria</option>
                 <option *ngFor="let categoria of categorias" value= {{categoria.idCategoria}}>
                     {{ categoria.Nome}}
@@ -34,20 +34,20 @@
     <div class="form-group row">
         <label for="Sequencial" class="col-sm-3 col-form-label">Sequencial:</label>
         <div class="col-sm-9 ml-0">
-            <input type="text" readonly="" value={{sequencial}} class="form-control" name="Sequencial" id="Sequencial" required/>
+            <input type="text" readonly="" value={{sequencial}} class="form-control" name="sequencial" id="sequencial" [(ngModel)]="sequencialAtual" required/>
             <div class="help-block with-errors"></div>
         </div>
     </div>
     <div class="form-group row">
-        <label for="Descricao" class="col-sm-3 col-form-label">Descrição:</label>
+        <label for="descricao" class="col-sm-3 col-form-label">Descrição:</label>
         <div class="col-sm-9 ml-0">
-            <textarea class="form-control" name="Descricao" id="Descricao" required=""></textarea>
+            <textarea class="form-control" name="descricao" id="descricao" [(ngModel)]="descricao" required=""></textarea>
             <div class="help-block with-errors"></div>
         </div>
     </div>
     <div class="form-group row">
         <div class="col-sm-10">
-          <button [disabled]="cadEquipamentoForm.invalid" (click)="save()" class="btn btn-success mr-2">Salvar</button>
+          <button (click)="save()" class="btn btn-success mr-2">Salvar</button>
           <button [routerLink]="['/inventario']" class="btn btn-secondary mr-2">Voltar</button>
         </div>
     </div>

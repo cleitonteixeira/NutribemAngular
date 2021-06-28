@@ -5,6 +5,7 @@ import { GestorContratosComponent } from "./gestorcontratos/gestor.component";
 import { LancamentoComponent } from "./gestorcontratos/lancamento/lancamento.component";
 import { HomeComponent } from "./home/home.component";
 import { EquipamentoComponent } from "./inventario/equipamento/equipamento-cadastro.component";
+import { ListarEquipamentoComponent } from "./inventario/equipamento/equipamento-lista.component";
 import { InventarioComponent } from "./inventario/inventario.component";
 import { LoginComponent } from "./login/login.component";
 
@@ -22,6 +23,8 @@ const appRoutes: Routes = [
       children:[
         {
           path: 'cadastro', component: EquipamentoComponent
+        },{
+          path: 'listar', component: ListarEquipamentoComponent
         }
       ]
     },

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categoria } from './categoria';
 import { Equipamento } from './equipamento'
-import { Unidade } from './unidade';
+import { Unidade } from '../unidade/unidade';
 
 @Injectable({
     providedIn: 'root'
@@ -29,15 +29,19 @@ export class EquipamentoService{
     }
 
     retornoById (id: number): Observable<Equipamento>{
-        return this.httpClient.get<Equipamento>(`${this.equipamentoUrl}/${id}`);
+        return this.httpClient.get<Equipamento>(`${this.equipamentoUrl+'/lista'}/+${id}`);
+    }
+
+    retornaTudo (): Observable<Equipamento[]>{
+        return this.httpClient.get<Equipamento[]>(`${this.equipamentoUrl+'/lista'}`)
     }
 
     save (equipamento: Equipamento): Observable<Equipamento>{
-        if(equipamento.idEquipamento){
-            return this.httpClient.put<Equipamento>(`${this.equipamentoUrl}/${equipamento.idEquipamento}`, equipamento);
-        }else{
-            return this.httpClient.post<Equipamento>(`${this.equipamentoUrl+'/cadastro'}`, equipamento);
-        }
+        //if(equipamento.idEquipamento){
+            //return this.httpClient.put<Equipamento>(`${this.equipamentoUrl}/${equipamento.idEquipamento}`, equipamento);
+        //}else{
+        return this.httpClient.post<Equipamento>(`${this.equipamentoUrl+'/add'}`, equipamento);
+        //}
     }
 
     deleteById(id: number): Observable<any>{

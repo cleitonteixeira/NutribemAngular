@@ -4,12 +4,14 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CoreModule } from "../core/core.module";
 import { EquipamentoComponent } from "./equipamento/equipamento-cadastro.component";
+import { ListarEquipamentoComponent } from "./equipamento/equipamento-lista.component";
 import { InventarioComponent } from "./inventario.component";
 
 @NgModule({
     declarations: [
         InventarioComponent,
-        EquipamentoComponent
+        EquipamentoComponent,
+        ListarEquipamentoComponent
     ],
     imports:[
         CoreModule,

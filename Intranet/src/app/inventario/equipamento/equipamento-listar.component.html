@@ -1,0 +1,27 @@
+<h4 class="card-title mb-4">Lista de Equipamentos</h4>
+<div class="form-group row">
+    <label class="col-sm-2 col-form-label">Filtrar por:</label>
+    <div class="col-sm-10">
+        <input class="form-control" [(ngModel)]="filtro"  />
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sequencial</th>
+            <th>Unidade</th>
+            <th>Extras</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let equipamentos of equipamentosFiltrados">
+            <td>{{ equipamentos.id }}</td>
+            <td>{{ equipamentos.nome }}</td>
+            <td>{{ equipamentos.sequencial }}</td>
+            <td>{{ equipamentos.unidade }}</td>
+            <td><a [routerLink]="['/inventario/detalhe', equipamentos.id ]" class="btn btn-success">Editar</a></td>
+        </tr>
+    </tbody>
+</table>

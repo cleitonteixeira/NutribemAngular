@@ -1,16 +1,23 @@
-import { Component, OnChanges, OnInit } from "@angular/core";
-import { Equipamento } from "./equipamento";
+import { Component, OnInit } from "@angular/core";
+
 import { EquipamentoService } from "./equipamento-cadastro.service"
-import { Unidade } from "./unidade";
+
+import { Equipamento } from "./equipamento";
+import { Unidade } from "../unidade/unidade";
 import { Categoria } from "./categoria";
-import { FormGroup } from "@angular/forms";
 
 @Component({
     templateUrl: './equipamento-cadastro.component.html'
 })
 export class EquipamentoComponent implements OnInit{
 
-    equipamento: Equipamento;
+    public equipamento: String = '';
+    public unidadeIdUnidade: Number;
+    public categoriaIdCategoria: Number;
+    public descricao: String = '';
+    public sequencialAtual: Number;
+
+    newEquipamento: Equipamento;
     _equipamentos: Equipamento [] = [];
     equipamentos: Equipamento [] = [];
 
@@ -22,12 +29,13 @@ export class EquipamentoComponent implements OnInit{
 
     sequencial: Number;
 
-    constructor(private equipamentoService: EquipamentoService){}
+    constructor(private equipamentoService: EquipamentoService){
+        this.newEquipamento = new Equipamento;
+    }
 
     ngOnInit():void{
         this.retornaUnidades();
         this.retornaCategorias();
-
     }
 
     retornaSequencial(id: number): void{
@@ -60,8 +68,19 @@ export class EquipamentoComponent implements OnInit{
         });
     }
     save(): void{
-        this.equipamentoService.save(this.equipamento).subscribe({
-            next: contrato => console.log('Salvo com sucesso', contrato),
+
+        console.log(this.equipamento+' - '+this.categoriaIdCategoria+' - '+this.unidadeIdUnidade+' - '+this.sequencial+' - '+this.descricao);
+
+        this.newEquipamento.nome = this.equipamento;
+        this.newEquipamento.categoriaIdCategoria = this.categoriaIdCategoria;
+        this.newEquipamento.sequencial = this.sequencial;
+        this.newEquipamento.categoriaIdCategoria = this.categoriaIdCategoria;
+        this.newEquipamento.unidadeIdUnidade = this.unidadeIdUnidade;
+        this.newEquipamento.descricao = this.descricao;
+
+        console.log(this.newEquipamento);
+        this.equipamentoService.save(this.newEquipamento).subscribe({
+            next: equipamento => console.log('Salvo com sucesso', equipamento),
             error: err => console.log("Error", err)
         });
     }

@@ -32,5 +32,11 @@ equipamentRouter.get('/sequencial/:id', async (req, res)=>{
 
     return res.json(retornoSequencial);
 });
+equipamentRouter.get('/lista', async (req, res)=>{
+
+    const retorno = await equipamentoController.retornaEquipamento();
+
+    return res.json(retorno);
+});
 
 export default equipamentRouter
