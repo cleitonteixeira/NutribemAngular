@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { CoreModule } from "../core/core.module";
 import { EquipamentoComponent } from "./equipamento/equipamento-cadastro.component";
+import { EquipamentoInfoComponent } from "./equipamento/equipamento-details.component";
 import { ListarEquipamentoComponent } from "./equipamento/equipamento-lista.component";
 import { InventarioComponent } from "./inventario.component";
 
@@ -11,7 +12,8 @@ import { InventarioComponent } from "./inventario.component";
     declarations: [
         InventarioComponent,
         EquipamentoComponent,
-        ListarEquipamentoComponent
+        ListarEquipamentoComponent,
+        EquipamentoInfoComponent
     ],
     imports:[
         CoreModule,

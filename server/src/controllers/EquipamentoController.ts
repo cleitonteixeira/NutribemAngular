@@ -28,13 +28,49 @@ export default class EquipamentoController{
         const retorno = newSequencial;
         console.log("Sequencial: "+retorno);
         
-        return retorno
+        return retorno;
     }
 
     async retornaEquipamento(){
         var sql = 'SELECT e.idEquipamento AS id, e.Nome AS nome, e.Sequencial AS sequencial, u.Nome AS unidade, u.Codigo AS unidadeIdUnidade FROM equipamento e INNER JOIN unidade u ON u.idUnidade = e.Unidade_idUnidade';
-        const retorno = await getConnection().query(sql);
+        const retorno = await getConnection().query( sql );
         console.log(retorno);
         return retorno;
+    }
+
+    async retornaHistorico(id: number){
+        var sql = 'SELECT he.idHistoricoEquipamento, e.Nome AS nome, e.Sequencial AS sequencial, u.Nome AS usuario, he.Tipo AS tipo, DATE_FORMAT(he.Data, "%d/%m/%Y") AS dataMovimenta, un.Nome AS undAtual, und.Nome AS undDestino FROM historicoequipamento he INNER JOIN equipamento e ON e.idEquipamento = he.Equipamento_idEquipamento INNER JOIN usuarios u ON u.idusuarios = he.Usuario_idUsuario INNER JOIN unidade un ON un.idUnidade = he.Unidade_idUnidade INNER JOIN unidade und ON und.idUnidade = he.Destino_Unidade WHERE he.Equipamento_idEquipamento = ?';
+        const values = [id];
+        const retorno = await getConnection().query( sql, values );
+        console.log(retorno);
+        return retorno;
+    }
+
+    async retornaEquipamentoById(id: number){
+        var sql = 'SELECT e.idEquipamento AS idEquipamento,e.Descricao AS descricao, e.Nome AS nome, e.Sequencial AS sequencial, u.Nome AS unidade, u.Codigo AS unidadeIdUnidade FROM equipamento e INNER JOIN unidade u ON u.idUnidade = e.Unidade_idUnidade WHERE e.idEquipamento = ?';
+        
+        const values = [id];
+        
+        const retorno = await getConnection().query( sql, values );
+        
+        console.log(retorno);
+        
+        return retorno;
+    }
+    async update(id: number,equipamento: Equipamento){
+        var sql = 'UPDATE equipamento SET Nome = ?, Descricao = ? WHERE idEquipamento = ?';
+        
+        const values = [equipamento.nome, equipamento.descricao, id];
+
+        console.log("Valores: "+values)
+        
+        const retorno = await getConnection().query( sql, values );
+        var ret = false;
+        console.log(retorno);
+        if(retorno['affectedRows'] == 1){
+            ret = true;
+        }
+        
+        return ret;
     }
 } 

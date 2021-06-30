@@ -7,21 +7,23 @@
 </div>
 <table class="table table-bordered table-striped">
     <thead>
-        <tr>
+        <tr class="text-center">
             <th>ID</th>
             <th>Nome</th>
             <th>Sequencial</th>
             <th>Unidade</th>
-            <th>Extras</th>
+            <th>Detalhes</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let equipamentos of equipamentosFiltrados">
-            <td>{{ equipamentos.id }}</td>
-            <td>{{ equipamentos.nome }}</td>
-            <td>{{ equipamentos.sequencial }}</td>
-            <td>{{ equipamentos.unidade }}</td>
-            <td><a [routerLink]="['/inventario/detalhe', equipamentos.id ]" class="btn btn-success">Editar</a></td>
+            <td class="text-center align-middle">{{ equipamentos.id }}</td>
+            <td class="align-middle">{{ equipamentos.nome }}</td>
+            <td class="align-middle">{{ equipamentos.sequencial }}</td>
+            <td class="align-middle">{{ equipamentos.unidade }}</td>
+            <td class="text-center align-middle">
+                <a [routerLink]="['/inventario/detalhe', equipamentos.id ]" class="btn btn-success">Details</a>
+            </td>
         </tr>
     </tbody>
 </table>

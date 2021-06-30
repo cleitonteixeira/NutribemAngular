@@ -32,6 +32,47 @@ equipamentRouter.get('/sequencial/:id', async (req, res)=>{
 
     return res.json(retornoSequencial);
 });
+equipamentRouter.get('/detalhe/:id', async (req, res)=>{
+    const id = Number(req.params.id);
+    
+    const retorno = await equipamentoController.retornaEquipamentoById(id);
+
+    console.log("Equipamento:"+ retorno);
+
+    return res.json(retorno);
+});
+equipamentRouter.put('/update/:id', async (req, res)=>{
+
+    const { nome, descricao } = req.body;
+    console.log(req.body);
+
+    const equipamento = new Equipamento();
+
+    equipamento.nome = nome;
+    equipamento.descricao = descricao;
+
+    const id = Number(req.params.id);
+
+    //console.log("ID:"+ id +" - Equipamento: "+ equipamento.nome+' - Descrição:'+equipamento.descricao);
+    
+    const retorno = await equipamentoController.update( id ,equipamento );
+
+    //console.log("Equipamento:"+ retorno);
+
+    var retornoUpdate = {
+        "Save": retorno
+    }
+
+    return res.json(retornoUpdate);
+});
+equipamentRouter.get('/historic/:id', async (req, res)=>{
+
+    const id = Number(req.params.id);
+
+    const retorno = await equipamentoController.retornaHistorico(id);
+
+    return res.json(retorno);
+});
 equipamentRouter.get('/lista', async (req, res)=>{
 
     const retorno = await equipamentoController.retornaEquipamento();

@@ -1,0 +1,90 @@
+<h4>Equipamento Detalhes</h4>
+<hr />
+<ul class="nav nav-tabs justify-content-center mb-3 p-1">
+    <li class="nav-item">
+        <a class="active btn btn-primary nav-link" id="cadastro-tab" data-toggle="tab" href="#cadastro">Dados Cadastrais</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-primary ml-1 nav-link" id="historico-tab" data-toggle="tab" href="#historico">Histórico</a>
+    </li>
+</ul>
+<div class="tab-content clearfix mt-2">
+    <div id="cadastro" class="tab-pane active">
+        <h5>Dados Cadastrais</h5>
+        <app-alert-form *ngIf="salvo" [type]="type" [alertText]="alertText"></app-alert-form>
+        <form #equipamentoForm='ngForm' *ngIf="equipamento">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="sequencial">Sequencial:</label>
+                    <input class="form-control" [(ngModel)]="equipamento.sequencial" required readonly [ngClass]="{'is-invalid':sequencialEquipamento.invalid}" name="sequencial" #sequencialEquipamento="ngModel" />
+                    <div class="invalid-feedback">
+                        Sequencial do Equipamento Inválido.
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="nome">Nome:</label>
+                    <input class="form-control" [(ngModel)]="equipamento.nome" required [ngClass]="{'is-invalid':nomeEquipamento.invalid}" name="nome" #nomeEquipamento="ngModel" />
+                    <div class="invalid-feedback">
+                        Nome do Equipamento Inválido.
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="unidade">Unidade Atual:</label>
+                    <input class="form-control" [(ngModel)]="equipamento.unidade" required readonly [ngClass]="{'is-invalid':unidadeEquipamento.invalid}" name="unidade" #unidadeEquipamento="ngModel" />
+                    <div class="invalid-feedback">
+                        Unidade do Equipamento Inválida.
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="unidade">Descrição:</label>
+                    <textarea class="form-control" rows="4" [(ngModel)]="equipamento.descricao" required [ngClass]="{'is-invalid':descricaoEquipamento.invalid}" name="descricao" #descricaoEquipamento="ngModel"></textarea>
+                    <div class="invalid-feedback">
+                        Descrição do Equipamento Inválida.
+                    </div>
+                </div>
+            </div>
+            <button [disabled]="equipamentoForm.invalid" (click)="save()" class="btn btn-success mr-2">Salvar</button>
+            <button [routerLink]="['/inventario/listar']" class="btn btn-secondary mr-2">Voltar</button>
+            <button class="btn btn-danger">Desativar Equipamento</button>
+        </form>
+    </div>
+    <div id="historico" class="tab-pane">
+        <h5>Histórico de Movimentação</h5>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Filtrar por:</label>
+            <div class="col-sm-10">
+                <input class="form-control" [(ngModel)]="filtro"  />
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Sequencial</th>
+                    <th>Unidade Atual</th>
+                    <th>Unidade Destino</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th>Responsável</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let historicEquipamentos of historicEquipamentosFiltrados">
+                    <td class="text-center align-middle">{{ historicEquipamentos.idHistoricoEquipamento}}</td>
+                    <td class="align-middle">{{ historicEquipamentos.nome }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.sequencial }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.undAtual }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.undDestino }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.tipo }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.dataMovimenta }}</td>
+                    <td class="align-middle">{{ historicEquipamentos.usuario }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

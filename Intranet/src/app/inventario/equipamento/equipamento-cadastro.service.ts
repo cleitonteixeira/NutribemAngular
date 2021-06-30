@@ -29,7 +29,7 @@ export class EquipamentoService{
     }
 
     retornoById (id: number): Observable<Equipamento>{
-        return this.httpClient.get<Equipamento>(`${this.equipamentoUrl+'/lista'}/+${id}`);
+        return this.httpClient.get<Equipamento>(`${this.equipamentoUrl+'/detalhe'}/+${id}`);
     }
 
     retornaTudo (): Observable<Equipamento[]>{
@@ -37,14 +37,17 @@ export class EquipamentoService{
     }
 
     save (equipamento: Equipamento): Observable<Equipamento>{
-        //if(equipamento.idEquipamento){
-            //return this.httpClient.put<Equipamento>(`${this.equipamentoUrl}/${equipamento.idEquipamento}`, equipamento);
-        //}else{
-        return this.httpClient.post<Equipamento>(`${this.equipamentoUrl+'/add'}`, equipamento);
-        //}
+        if(equipamento.idEquipamento){
+            return this.httpClient.put<Equipamento>(`${this.equipamentoUrl+'/update'}/${equipamento.idEquipamento}`, equipamento);
+        }else{
+            return this.httpClient.post<Equipamento>(`${this.equipamentoUrl+'/add'}`, equipamento);
+        }
     }
 
     deleteById(id: number): Observable<any>{
         return this.httpClient.delete<any>(`${this.equipamentoUrl}/${id}`);
+    }
+    returnHistoric(id: Number):  Observable<Equipamento[]>{
+        return this.httpClient.get<Equipamento[]>(`${this.equipamentoUrl+'/historic'}/${id}`)
     }
 }

@@ -9,4 +9,10 @@ export class Equipamento {
   sequencial: Number;
   ativo: Number;
   situacao: String;
+  tipo: String;
+  dataMovimenta: String;
+  undAtual: String;
+  undDestino: String;
+  usuario: String;
+  idHistoricoEquipamento: Number;
 }
